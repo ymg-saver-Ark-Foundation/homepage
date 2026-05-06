@@ -288,6 +288,52 @@
 </style>
 </head>
 <body data-page="index">
+
+  <!-- ログイン -->
+  <div id="login">
+    <button onclick="loginGoogle()">Googleでログイン</button>
+  </div>
+
+  <!-- サイト本体 -->
+  <div id="main" style="display:none;">
+    
+    <!-- ★ここはID消す -->
+    <div>
+      <div class="page-hero">
+        ...
+      </div>
+    </div>
+
+  </div>
+
+  <!-- JS -->
+  <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+  import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged }
+  from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "そのまま",
+    authDomain: "ymg-server-ark-foundation.firebaseapp.com",
+    projectId: "ymg-server-ark-foundation",
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
+
+  window.loginGoogle = function () {
+    signInWithPopup(auth, provider);
+  };
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      document.getElementById("login").style.display = "none";
+      document.getElementById("main").style.display = "block";
+    }
+  });
+  </script>
+  
 <button id="sidebar-toggle">☰</button>
 <aside id="sidebar">
   <div class="sidebar-logo">
