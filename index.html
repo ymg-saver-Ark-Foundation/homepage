@@ -463,5 +463,114 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.querySelectorAll(`.sidebar-nav a[data-page="${page}"]`).forEach(a=>a.classList.add('active'));
 });
 </script>
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+
+import {
+  getAuth,
+  signInWithPopup,
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+
+
+
+const firebaseConfig = {
+
+  apiKey: "AIzaSyCogtmEhrnpC6koUnOswkIVxbeKZYOR5Ps",
+
+  authDomain:
+    "ymg-server-ark-foundation.firebaseapp.com",
+
+  projectId:
+    "ymg-server-ark-foundation",
+
+  storageBucket:
+    "ymg-server-ark-foundation.firebasestorage.app",
+
+  messagingSenderId:
+    "681371491632",
+
+  appId:
+    "1:681371491632:web:a70b16102b15f6c921fcf5",
+
+  measurementId:
+    "G-R1RFL4DXYJ"
+
+};
+
+
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+const provider = new GoogleAuthProvider();
+
+
+
+// Googleログイン
+window.loginGoogle = () => {
+
+  signInWithPopup(auth, provider);
+
+};
+
+
+
+// メールログイン
+window.loginEmail = async () => {
+
+  const email =
+    document.getElementById("email").value;
+
+  const password =
+    document.getElementById("password").value;
+
+  try {
+
+    await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+
+  } catch {
+
+    await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+
+  }
+
+};
+
+
+
+// ログイン状態監視
+onAuthStateChanged(auth, (user) => {
+
+  if (user) {
+
+    document.getElementById("login-screen")
+      .style.display = "none";
+
+    document.getElementById("main-site")
+      .style.display = "block";
+
+  }
+
+});
+
+</script>
+
 </body>
 </html>
