@@ -463,6 +463,112 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.querySelectorAll(`.sidebar-nav a[data-page="${page}"]`).forEach(a=>a.classList.add('active'));
 });
 </script>
+<!-- ログイン画面 -->
+<div id="login-screen">
+
+  <div class="login-box">
+
+    <div class="login-title">
+      SLCPF ACCESS PORTAL
+    </div>
+
+    <div class="login-sub">
+      AUTHORIZED ACCESS ONLY
+    </div>
+
+    <!-- Googleログイン -->
+    <button class="google-btn" onclick="loginGoogle()">
+      Googleでログイン
+    </button>
+
+    <hr>
+
+    <!-- メールログイン -->
+    <input
+      type="email"
+      id="email"
+      placeholder="Email"
+    >
+
+    <input
+      type="password"
+      id="password"
+      placeholder="Password"
+    >
+
+    <button class="email-btn" onclick="loginEmail()">
+      メールでログイン
+    </button>
+
+  </div>
+
+</div>
+
+
+
+<style>
+
+#login-screen{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#08111d;
+}
+
+.login-box{
+  width:340px;
+  padding:30px;
+  background:#0f1c2c;
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+.login-title{
+  font-size:24px;
+  font-weight:900;
+  color:white;
+  margin-bottom:8px;
+  letter-spacing:.08em;
+}
+
+.login-sub{
+  color:rgba(255,255,255,0.55);
+  font-size:12px;
+  margin-bottom:22px;
+  letter-spacing:.12em;
+}
+
+.login-box input{
+  width:100%;
+  margin-bottom:10px;
+  padding:12px;
+  background:#09121d;
+  border:1px solid rgba(255,255,255,0.08);
+  color:white;
+}
+
+.login-box button{
+  width:100%;
+  padding:12px;
+  cursor:pointer;
+  border:none;
+  font-weight:700;
+  margin-bottom:10px;
+}
+
+.google-btn{
+  background:white;
+}
+
+.email-btn{
+  background:#d4af55;
+}
+
+</style>
+
+
 
 <script type="module">
 
@@ -552,6 +658,9 @@ window.loginEmail = async () => {
   }
 
 };
+
+
+
 // ログイン状態監視
 onAuthStateChanged(auth, (user) => {
 
@@ -559,9 +668,6 @@ onAuthStateChanged(auth, (user) => {
 
     document.getElementById("login-screen")
       .style.display = "none";
-
-    document.getElementById("main-site")
-      .style.display = "block";
 
   }
 
