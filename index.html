@@ -674,5 +674,26 @@ onAuthStateChanged(auth, (user) => {
 });
 
 </script>
+
+<!-- recaptcha -->
+<script src="https://www.google.com/recaptcha/api.js?render=6LehfessAAAAAHv3u97aqihReFm3AAOh0LXgRkSG"></script>
+
+
+<script>
+
+grecaptcha.ready(function() {
+
+  grecaptcha.execute(
+    '6LehfessAAAAAHv3u97aqihReFm3AAOh0LXgRkSG',
+    {action:'login'}
+  ).then(function(token) {
+
+    console.log("reCAPTCHA OK");
+
+  });
+
+});
+
+</script>
 </body>
 </html>
