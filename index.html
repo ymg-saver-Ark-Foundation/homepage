@@ -242,12 +242,6 @@
 
   /* divider */
   .gold-divider { width:48px; height:2px; background:var(--gold); margin: 0 0 1.2rem; }
-
-  /* recaptcha*/
-
-  .grecaptcha-badge {
-  display:none;
-  }
   
   /* footer */
   footer {
@@ -676,27 +670,6 @@ onAuthStateChanged(auth, (user) => {
       .style.display = "none";
 
   }
-
-});
-
-</script>
-
-<!-- recaptcha -->
-<script src="https://www.google.com/recaptcha/api.js?render=6LehfessAAAAAHv3u97aqihReFm3AAOh0LXgRkSG"></script>
-
-
-<script>
-
-grecaptcha.ready(function() {
-
-  grecaptcha.execute(
-    '6LehfessAAAAAHv3u97aqihReFm3AAOh0LXgRkSG',
-    {action:'login'}
-  ).then(function(token) {
-
-    console.log("reCAPTCHA OK");
-
-  });
 
 });
 
